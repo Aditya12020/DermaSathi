@@ -123,7 +123,7 @@ function App() {
       {/* Features */}
       <section className="features" id="features">
 
-        <p className="tagline">WHY DERMAI?</p>
+        <p className="tagline">WHY DermaSathi?</p>
 
         <h2>Everything You Need</h2>
 
