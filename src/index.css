@@ -55,7 +55,7 @@ body {
 }
 
 #root {
-  width: 1126px;
+  width: 100%;
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
@@ -77,20 +77,24 @@ h1 {
   font-size: 56px;
   letter-spacing: -1.68px;
   margin: 32px 0;
+
   @media (max-width: 1024px) {
     font-size: 36px;
     margin: 20px 0;
   }
 }
+
 h2 {
   font-size: 24px;
   line-height: 118%;
   letter-spacing: -0.24px;
   margin: 0 0 8px;
+
   @media (max-width: 1024px) {
     font-size: 20px;
   }
 }
+
 p {
   margin: 0;
 }
@@ -108,4 +112,497 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+}
+
+/* =========================
+   LOGIN PAGE
+========================= */
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f4fbf9;
+}
+
+.login-card {
+  width: 400px;
+  background: white;
+  padding: 40px;
+  border-radius: 18px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.login-card h1 {
+  font-size: 30px;
+  margin-bottom: 25px;
+}
+
+.login-card h1 span {
+  color: #159a86;
+}
+
+.login-card h2 {
+  margin-bottom: 8px;
+  color: #222;
+}
+
+.login-card p {
+  color: #777;
+  margin-bottom: 25px;
+}
+
+.login-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-card input {
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+}
+
+.login-card input:focus {
+  border-color: #159a86;
+}
+
+.login-card .primary-btn {
+  width: 100%;
+  margin-top: 5px;
+}
+
+.back-btn {
+  margin-top: 20px;
+  background: none;
+  border: none;
+  color: #159a86;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard {
+  min-height: 100vh;
+  display: flex;
+  background: #f5faf9;
+  text-align: center;
+}
+
+
+/* Sidebar */
+
+.sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background: #ffffff;
+  border-right: 1px solid #e5eeee;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.sidebar-logo {
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 50px;
+  padding-left: 10px;
+}
+
+.sidebar-logo span {
+  color: #159a86;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar-menu button {
+  border: none;
+  background: transparent;
+  padding: 13px 15px;
+  text-align: left;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  color: #555;
+}
+
+.sidebar-menu button:hover {
+  background: #eaf8f5;
+  color: #159a86;
+}
+
+
+/* Logout */
+
+.logout-btn {
+  margin-top: auto;
+  border: none;
+  background: #fff0f0;
+  color: #d9534f;
+  padding: 13px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.logout-btn:hover {
+  background: #ffe0e0;
+}
+
+
+/* Dashboard Content */
+
+.dashboard-content {
+  flex: 1;
+  padding: 60px;
+}
+
+.dashboard-content h1 {
+  font-size: 42px;
+  margin: 10px 0 15px;
+  color: #222;
+}
+
+.dashboard-content h1 span {
+  color: #159a86;
+}
+
+.dashboard-description {
+  .dashboard-content {
+    flex: 1;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+
+/* Dashboard Cards */
+
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.dashboard-card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-card h3 {
+  margin: 15px 0 10px;
+}
+
+.dashboard-card p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.secondary-btn {
+  padding: 12px 20px;
+  border: 1px solid #159a86;
+  color: #159a86;
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.secondary-btn:hover {
+  background: #159a86;
+  color: white;
+}
+
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+  }
+
+  .sidebar-logo {
+    margin-bottom: 20px;
+  }
+
+  .sidebar-menu {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .logout-btn {
+    margin-top: 20px;
+  }
+
+  .dashboard-content {
+    padding: 30px 20px;
+  }
+
+  .dashboard-content h1 {
+    font-size: 32px;
+  }
+
+  .dashboard-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .login-card {
+    width: 90%;
+    padding: 30px 20px;
+  }
+}
+
+/* =========================
+   THEME TOGGLE
+========================= */
+
+.theme-toggle {
+  padding: 9px 14px;
+  border: 1px solid #159a86;
+  background: transparent;
+  color: #159a86;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.theme-toggle:hover {
+  background: #159a86;
+  color: white;
+}
+
+
+/* =========================
+   DARK THEME - GENERAL
+========================= */
+
+.dark-theme {
+  background: #101817 !important;
+  color: #eeeeee;
+}
+
+
+/* =========================
+   HOME PAGE DARK MODE
+========================= */
+
+.app.dark-theme {
+  background: #101817;
+}
+
+.app.dark-theme .navbar {
+  background: #17211f;
+  border-bottom: 1px solid #293532;
+}
+
+.app.dark-theme .nav-links a {
+  color: #dddddd;
+}
+
+.app.dark-theme .nav-links a:hover {
+  color: #35c7ad;
+}
+
+.app.dark-theme .hero {
+  background: #101817;
+}
+
+.app.dark-theme .hero h1 {
+  color: #ffffff;
+}
+
+.app.dark-theme .description {
+  color: #aaaaaa;
+}
+
+.app.dark-theme .hero-card {
+  background: #1b2926;
+  color: white;
+}
+
+.app.dark-theme .upload-section {
+  background: #101817;
+}
+
+.app.dark-theme .upload-section h2 {
+  color: white;
+}
+
+.app.dark-theme .section-description {
+  color: #aaaaaa;
+}
+
+.app.dark-theme .upload-box {
+  background: #1a2725;
+  border-color: #354641;
+}
+
+.app.dark-theme .upload-box h3 {
+  color: white;
+}
+
+.app.dark-theme .upload-box p,
+.app.dark-theme .upload-box small {
+  color: #aaaaaa;
+}
+
+.app.dark-theme .features {
+  background: #17211f;
+}
+
+.app.dark-theme .features h2 {
+  color: white;
+}
+
+.app.dark-theme .feature-card {
+  background: #1b2926;
+  color: white;
+}
+
+.app.dark-theme .feature-card p {
+  color: #aaaaaa;
+}
+
+.app.dark-theme .disclaimer {
+  background: #1a2725;
+  color: #dddddd;
+}
+
+.app.dark-theme footer {
+  background: #0a0f0e;
+  color: #dddddd;
+}
+
+
+/* =========================
+   LOGIN DARK MODE
+========================= */
+
+.login-page.dark-theme {
+  background: #101817;
+}
+
+.login-page.dark-theme .login-card {
+  background: #1b2926;
+  color: white;
+}
+
+.login-page.dark-theme .login-card h2 {
+  color: white;
+}
+
+.login-page.dark-theme .login-card p {
+  color: #aaaaaa;
+}
+
+.login-page.dark-theme .login-card input {
+  background: #253330;
+  border-color: #3b4b47;
+  color: white;
+}
+
+.login-page.dark-theme .login-card input::placeholder {
+  color: #999999;
+}
+
+
+/* =========================
+   DASHBOARD DARK MODE
+========================= */
+
+.dashboard.dark-theme {
+  background: #101817;
+}
+
+.dashboard.dark-theme .sidebar {
+  background: #17211f;
+  border-right-color: #293532;
+}
+
+.dashboard.dark-theme .sidebar-menu button {
+  color: #dddddd;
+}
+
+.dashboard.dark-theme .sidebar-menu button:hover {
+  background: #223532;
+  color: #35c7ad;
+}
+
+.dashboard.dark-theme .dashboard-content {
+  background: #101817;
+}
+
+.dashboard.dark-theme .dashboard-content h1 {
+  color: white;
+}
+
+.dashboard.dark-theme .dashboard-description {
+  color: #aaaaaa;
+}
+
+.dashboard.dark-theme .dashboard-card {
+  background: #1b2926;
+  color: white;
+}
+
+.dashboard.dark-theme .dashboard-card p {
+  color: #aaaaaa;
+}
+
+.dashboard.dark-theme .secondary-btn {
+  background: transparent;
+  color: #35c7ad;
+  border-color: #35c7ad;
+}
+
+.dashboard.dark-theme .secondary-btn:hover {
+  background: #159a86;
+  color: white;
+}
+
+.dashboard.dark-theme .logout-btn {
+  background: #3a2424;
+  color: #ff8585;
+}
+
+.dashboard.dark-theme .logout-btn:hover {
+  background: #4a2929;
+}
+
+
+/* Sidebar Theme Button */
+
+.sidebar-theme {
+  width: 100%;
+  margin-bottom: 10px;
 }
