@@ -9,11 +9,11 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [name, setName] = useState("");
 
-  // Dark / Light Mode
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
 
   const toggleTheme = () => {
-    setDarkMode(!darkMode);
+    setDarkMode((prev) => !prev);
   };
 
   const handleImage = (e) => {
@@ -31,12 +31,14 @@ function App() {
     if (name.trim() !== "") {
       setIsLoggedIn(true);
       setShowLogin(false);
+      setSidebarOpen(true);
     }
   };
 
   const handleLogout = () => {
     setIsLoggedIn(false);
     setName("");
+    setSidebarOpen(true);
   };
 
   /* =========================
@@ -45,12 +47,13 @@ function App() {
 
   if (showLogin && !isLoggedIn) {
     return (
-      <div className={darkMode ? "login-page dark-theme" : "login-page"}>
-
+      <div className={`login-page ${darkMode ? "dark-theme" : ""}`}>
         <div className="login-card">
 
-          {/* Theme Button */}
-          <button className="theme-toggle" onClick={toggleTheme}>
+          <button
+            className="theme-toggle login-theme"
+            onClick={toggleTheme}
+          >
             {darkMode ? "☀️ Light" : "🌙 Dark"}
           </button>
 
@@ -63,7 +66,6 @@ function App() {
           <p>Login to access your dashboard</p>
 
           <form onSubmit={handleLogin}>
-
             <input
               type="text"
               placeholder="Enter your name"
@@ -84,13 +86,9 @@ function App() {
               required
             />
 
-            <button
-              type="submit"
-              className="primary-btn"
-            >
+            <button type="submit" className="primary-btn">
               Login
             </button>
-
           </form>
 
           <button
@@ -99,7 +97,6 @@ function App() {
           >
             ← Back to Home
           </button>
-
         </div>
       </div>
     );
@@ -111,38 +108,50 @@ function App() {
 
   if (isLoggedIn) {
     return (
-      <div className={darkMode ? "dashboard dark-theme" : "dashboard"}>
-
+      <div
+        className={`dashboard ${darkMode ? "dark-theme" : ""} ${
+          sidebarOpen ? "sidebar-open" : "sidebar-closed"
+        }`}
+      >
         {/* Sidebar */}
         <aside className="sidebar">
 
-          <div className="sidebar-logo">
-            <span>Derma</span>Sathi
+          <div className="sidebar-header">
+            <div className="sidebar-logo">
+              <span>Derma</span>Sathi
+            </div>
+
+            <button
+              className="hamburger-btn"
+              onClick={() => setSidebarOpen(false)}
+              aria-label="Close sidebar"
+            >
+              ☰
+            </button>
           </div>
 
           <div className="sidebar-menu">
-
-            <button>
-              🏠 Dashboard
+            <button
+              onClick={() => {
+                setIsLoggedIn(false);
+                setShowLogin(false);
+              }}
+            >
+              🏠 Home
             </button>
 
-            <button>
-              👤 My Details
-            </button>
+            <button>📊 Dashboard</button>
 
-            <button>
-              📊 Health Tracking
-            </button>
+            <button>👤 My Details</button>
 
-            <button>
-              ⚙ Settings
-            </button>
+            <button>📊 Health Tracking</button>
 
+            <button>📷 Upload Image</button>
+
+            <button>⚙ Settings</button>
           </div>
 
-          {/* Sidebar Bottom */}
           <div className="sidebar-bottom">
-
             <button
               className="theme-toggle sidebar-theme"
               onClick={toggleTheme}
@@ -156,17 +165,23 @@ function App() {
             >
               🚪 Logout
             </button>
-
           </div>
-
         </aside>
 
-        {/* Dashboard Content */}
-        <main className="dashboard-content">
+        {/* Show sidebar button when closed */}
+        {!sidebarOpen && (
+          <button
+            className="open-sidebar-btn"
+            onClick={() => setSidebarOpen(true)}
+            aria-label="Open sidebar"
+          >
+            ☰
+          </button>
+        )}
 
-          <p className="tagline">
-            DERMASATHI DASHBOARD
-          </p>
+        {/* Dashboard */}
+        <main className="dashboard-content">
+          <p className="tagline">DERMASATHI DASHBOARD</p>
 
           <h1>
             Welcome, <span>{name}!</span>
@@ -181,14 +196,9 @@ function App() {
           <div className="dashboard-cards">
 
             <div className="dashboard-card">
+              <div className="feature-icon">AI</div>
 
-              <div className="feature-icon">
-                AI
-              </div>
-
-              <h3>
-                Analyze Your Skin
-              </h3>
+              <h3>Analyze Your Skin</h3>
 
               <p>
                 Upload a skin image and get an AI-powered
@@ -198,18 +208,12 @@ function App() {
               <button className="primary-btn">
                 Start Analysis
               </button>
-
             </div>
 
             <div className="dashboard-card">
+              <div className="feature-icon">↗</div>
 
-              <div className="feature-icon">
-                ↗
-              </div>
-
-              <h3>
-                Health Tracking
-              </h3>
+              <h3>Health Tracking</h3>
 
               <p>
                 View your previous skin analysis and track
@@ -219,13 +223,10 @@ function App() {
               <button className="secondary-btn">
                 View History
               </button>
-
             </div>
 
           </div>
-
         </main>
-
       </div>
     );
   }
@@ -235,30 +236,19 @@ function App() {
   ========================= */
 
   return (
-    <div className={darkMode ? "app dark-theme" : "app"}>
+    <div className={`app ${darkMode ? "dark-theme" : ""}`}>
 
       {/* Navbar */}
       <nav className="navbar">
-
         <div className="logo">
           <span>Derma</span>Sathi
         </div>
 
         <div className="nav-links">
+          <a href="#home">Home</a>
+          <a href="#features">Features</a>
+          <a href="#about">About</a>
 
-          <a href="#home">
-            Home
-          </a>
-
-          <a href="#features">
-            Features
-          </a>
-
-          <a href="#about">
-            About
-          </a>
-
-          {/* Theme Toggle */}
           <button
             className="theme-toggle"
             onClick={toggleTheme}
@@ -266,26 +256,19 @@ function App() {
             {darkMode ? "☀️ Light" : "🌙 Dark"}
           </button>
 
-          {/* Login */}
           <button
             className="login-btn"
             onClick={() => setShowLogin(true)}
           >
             Login
           </button>
-
         </div>
-
       </nav>
 
-      {/* Hero Section */}
+      {/* Hero */}
       <section className="hero" id="home">
-
         <div className="hero-content">
-
-          <p className="tagline">
-            AI-POWERED SKIN ANALYSIS
-          </p>
+          <p className="tagline">AI-POWERED SKIN ANALYSIS</p>
 
           <h1>
             Understand Your Skin
@@ -303,85 +286,53 @@ function App() {
             onClick={() =>
               document
                 .getElementById("upload")
-                .scrollIntoView()
+                .scrollIntoView({ behavior: "smooth" })
             }
           >
             Analyze Your Skin
           </button>
-
         </div>
 
         <div className="hero-card">
-
           <div className="scan-circle">
             <span>AI</span>
           </div>
 
-          <h3>
-            AI Skin Analysis
-          </h3>
-
-          <p>
-            Fast & easy preliminary screening
-          </p>
-
+          <h3>AI Skin Analysis</h3>
+          <p>Fast & easy preliminary screening</p>
         </div>
-
       </section>
 
-      {/* Upload Section */}
-      <section
-        className="upload-section"
-        id="upload"
-      >
+      {/* Upload */}
+      <section className="upload-section" id="upload">
+        <p className="tagline">SKIN ANALYSIS</p>
 
-        <p className="tagline">
-          SKIN ANALYSIS
-        </p>
-
-        <h2>
-          Upload Your Skin Image
-        </h2>
+        <h2>Upload Your Skin Image</h2>
 
         <p className="section-description">
           Upload a clear image of the affected skin area.
         </p>
 
         <div className="upload-box">
-
           {preview ? (
             <div className="preview-container">
+              <img src={preview} alt="Skin preview" />
 
-              <img
-                src={preview}
-                alt="Skin preview"
-              />
-
-              <p>
-                {image?.name}
-              </p>
+              <p>{image?.name}</p>
 
               <button className="primary-btn">
                 Analyze Image
               </button>
-
             </div>
           ) : (
             <>
-              <div className="upload-icon">
-                ↑
-              </div>
+              <div className="upload-icon">↑</div>
 
-              <h3>
-                Drag & Drop your image here
-              </h3>
+              <h3>Drag & Drop your image here</h3>
 
-              <p>
-                or
-              </p>
+              <p>or</p>
 
               <label className="upload-btn">
-
                 Choose Image
 
                 <input
@@ -390,97 +341,63 @@ function App() {
                   onChange={handleImage}
                   hidden
                 />
-
               </label>
 
               <small>
                 Supported formats: JPG, JPEG, PNG
               </small>
-
             </>
           )}
-
         </div>
-
       </section>
 
       {/* Features */}
-      <section
-        className="features"
-        id="features"
-      >
+      <section className="features" id="features">
+        <p className="tagline">WHY DermaSathi?</p>
 
-        <p className="tagline">
-          WHY DermaSathi?
-        </p>
-
-        <h2>
-          Everything You Need
-        </h2>
+        <h2>Everything You Need</h2>
 
         <div className="feature-grid">
 
           <div className="feature-card">
+            <div className="feature-icon">AI</div>
 
-            <div className="feature-icon">
-              AI
-            </div>
-
-            <h3>
-              AI Classification
-            </h3>
+            <h3>AI Classification</h3>
 
             <p>
               Analyze images and identify possible skin
               conditions with confidence scores.
             </p>
-
           </div>
 
           <div className="feature-card">
+            <div className="feature-icon">✦</div>
 
-            <div className="feature-icon">
-              ✦
-            </div>
-
-            <h3>
-              Smart Recommendations
-            </h3>
+            <h3>Smart Recommendations</h3>
 
             <p>
               Get personalized skincare product
               recommendations based on the analysis.
             </p>
-
           </div>
 
           <div className="feature-card">
+            <div className="feature-icon">↗</div>
 
-            <div className="feature-icon">
-              ↗
-            </div>
-
-            <h3>
-              Health Tracking
-            </h3>
+            <h3>Health Tracking</h3>
 
             <p>
               Keep track of your previous predictions and
               compare your skin condition over time.
             </p>
-
           </div>
 
         </div>
-
       </section>
 
       {/* Disclaimer */}
       <section className="disclaimer">
-
-        <strong>
-          Medical Disclaimer
-        </strong>
+        <strong>Medical Disclaimer</strong>
 
         <p>
           DermaSathi provides preliminary AI-based screening
@@ -488,24 +405,17 @@ function App() {
           advice or diagnosis. Please consult a qualified
           dermatologist for medical concerns.
         </p>
-
       </section>
 
       {/* Footer */}
       <footer>
-
-        <h3>
-          DermaSathi
-        </h3>
+        <h3>DermaSathi</h3>
 
         <p>
           AI-Powered Skin Care & Disease Detection System
         </p>
 
-        <p>
-          © 2026 Team Ephemeral
-        </p>
-
+        <p>© 2026 Team Ephemeral</p>
       </footer>
 
     </div>
