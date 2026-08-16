@@ -9,16 +9,10 @@ function Icon({ children }) {
 }
 
 function App() {
-  /* =========================
-     IMAGE / SCAN STATES
-  ========================== */
-
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
 
-  /* =========================
-     AUTH STATES
-  ========================== */
+  /* login signup */
 
   const [showLogin, setShowLogin] = useState(false);
   const [authMode, setAuthMode] = useState("login");
@@ -29,44 +23,24 @@ function App() {
   const [authEmail, setAuthEmail] = useState("");
   const [authPassword, setAuthPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
-  /* =========================
-     ONBOARDING
-  ========================== */
-
   const [showGetStarted, setShowGetStarted] = useState(false);
   const [skinConcern, setSkinConcern] = useState("");
   const [skinType, setSkinType] = useState("");
   const [age, setAge] = useState("");
-
-  /* =========================
-     PORTAL
-  ========================== */
-
   const [page, setPage] = useState("dashboard");
   const [darkMode, setDarkMode] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
-  /* =========================
-     ANALYSIS
-  ========================== */
 
   const [analyzing, setAnalyzing] = useState(false);
   const [analysisCount, setAnalysisCount] = useState(0);
   const [lastAnalysis, setLastAnalysis] = useState(null);
-
-  /* =========================
-     UI
-  ========================== */
-
   const [toast, setToast] = useState("");
   const [showNotifications, setShowNotifications] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [selectedGuide, setSelectedGuide] = useState(null);
 
-  /* =========================
-     LOAD SAVED SESSION
-  ========================== */
+  /*to load saved session */
 
   useEffect(() => {
     const savedSession = localStorage.getItem("dermasathi_session");
@@ -101,9 +75,6 @@ function App() {
     }
   }, []);
 
-  /* =========================
-     TOAST
-  ========================== */
 
   useEffect(() => {
     if (!toast) return;
@@ -119,9 +90,6 @@ function App() {
     setToast(message);
   };
 
-  /* =========================
-     THEME
-  ========================== */
 
   const toggleTheme = () => {
     setDarkMode((prev) => {
@@ -136,9 +104,7 @@ function App() {
     });
   };
 
-  /* =========================
-     IMAGE HANDLING
-  ========================== */
+  /* IMAGE HANDLING */
 
   const handleImage = (e) => {
     const file = e.target.files?.[0];
@@ -169,9 +135,6 @@ function App() {
     document.getElementById("dashboard-upload")?.click();
   };
 
-  /* =========================
-     ANALYSIS
-  ========================== */
 
   const startAnalysis = () => {
     if (!preview) {
@@ -198,9 +161,6 @@ function App() {
     setAnalyzing(false);
   };
 
-  /* =========================
-     AUTH HELPERS
-  ========================== */
 
   const getUsers = () => {
     try {
@@ -224,9 +184,7 @@ function App() {
     );
   };
 
-  /* =========================
-     LOGIN
-  ========================== */
+  /*LOGIN */
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -280,9 +238,7 @@ function App() {
     notify(`Welcome back, ${existingUser.name}!`);
   };
 
-  /* =========================
-     SIGNUP
-  ========================== */
+  /*SIGNUP */
 
   const handleSignup = (e) => {
     e.preventDefault();
@@ -354,9 +310,7 @@ function App() {
     notify("Account created successfully.");
   };
 
-  /* =========================
-     LOGOUT
-  ========================== */
+  /*LOGOUT*/
 
   const logout = () => {
     if (preview) {
@@ -409,9 +363,7 @@ function App() {
     setConfirmPassword("");
   };
 
-  /* =========================
-     SAVE PROFILE
-  ========================== */
+  /* to save entered profile details*/
 
   const saveProfile = () => {
     const session = localStorage.getItem("dermasathi_session");
@@ -449,9 +401,7 @@ function App() {
     }
   };
 
-  /* =========================
-     NAVIGATION
-  ========================== */
+  /*navigation ke liye */
 
   const scrollToSection = (id) => {
     setShowLogin(false);
@@ -482,9 +432,7 @@ function App() {
       "Keep your routine simple: gentle cleansing, appropriate moisturization and daily sun protection are good general starting points.",
   };
 
-  /* =========================================================
-     LOGIN / SIGNUP PAGE
-  ========================================================== */
+  /*LOGIN / SIGNUP PAGE*/
 
   if (showLogin && !isLoggedIn) {
     return (
@@ -777,9 +725,7 @@ function App() {
     );
   }
 
-  /* =========================================================
-     ONBOARDING
-  ========================================================== */
+  
 
   if (isLoggedIn && showGetStarted) {
     return (
@@ -915,9 +861,7 @@ function App() {
     );
   }
 
-  /* =========================================================
-     PATIENT PORTAL
-  ========================================================== */
+  /*PATIENT PORtal */
 
   if (isLoggedIn) {
     return (
