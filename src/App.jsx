@@ -4,7 +4,7 @@ import "./App.css";
 import LoginPage from "./authentication/LoginPage";
 import Onboarding from "./authentication/Onboarding";
 import Portal from "./portal/Portal";
-import PublicWebsite from "./website/PublicWebsite";
+import PublicWebsite from "./publicwebsite";
 
 const clinicalImage =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuAJn7_qWXWuEZQywU7t8Bx0wmFcqdplsenjoc6HXppfkac0sn0zd3rHWhW7CkZn_EU5i2VZpfRGszM_mDGoFq3vkkxdllamDdPC8Ei0falg2UDCP6OjSP5EeH1MUNwkCDPG-QC_UzRQ5J6YQ2d9QBhJ6E3vnUHW64sn1CzT3R5DmvJIbbn65XjS9QQMA_NKnCqFi29RJAJXN8SaHfGhxniekkNbWN3DXsKnWajOhtPizeacpxLBuJC6";
